@@ -23,8 +23,22 @@
 
 
    <div class="h-16 w-full bg-red-500 flex items-center justify-center gap-2">
-      <input class="h-8/12 w-1/3 bg-white rounded-4xl outline-0 pl-4.5" type="text" placeholder="Search movie tv-shows">
-      <button class="h-8/12 w-fit px-4 hover:scale-105 rounded-4xl bg-red-700 text-white active:scale-95 font-bold"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <input class="SearchInp h-8/12 w-1/3 bg-white rounded-4xl outline-0 pl-4.5" type="text" placeholder="Search movie tv-shows">
+      <button class="microphone h-8/12 w-fit px-4 hover:scale-105 rounded-4xl bg-red-700 text-white active:scale-95 font-bold"><i class="fa-solid fa-microphone"></i></button>
+      <button class="SearchBtn h-8/12 w-fit px-3.5 hover:scale-105 rounded-4xl bg-red-700 text-white active:scale-95 font-bold"><i class="fa-solid fa-magnifying-glass "></i></button>
+   </div>
+
+   <div class="searchOutput h-fit w-[80%] mx-auto mt-1.5 rounded-2xl backdrop-blur-3xl flex flex-col gap-6 p-5">
+      <div class="searchDetail m-1.5 flex shadow-2xl w-[80%] mx-auto rounded-md bg-red-100">
+         <img class="h-40 searchImg rounded-md shadow-3xl w-auto cursor-pointer hover:opacity-90 hover:scale-105 duration-200 rounded-tr-none rounded-br-none" src="./Images/poster.webp" alt="">
+         <div class="searchText pt-2.5 pr-2 flex flex-col gap-3.5">
+           <div class="searchTwo">
+               <h4 class="searchTitle text-xl  pl-5">Avengers: Infinity war</h4>
+               <h6 class="searchDate font-bold">September 21th 2025</h6>
+            </div>
+            <p class="searchDescribtion mb-2.5 indent-4 ">One night and a wad of cash he suddenly has to come up with quick. So he and his friend Láďa have to set out on a wild Friday odyssey full of cocaine and rap.</p>
+         </div>
+      </div>
    </div>
 
    <button class="my-5 w-fit p-1.5  text-2xl  bg-white font-semibold ml-10 trending">Trending</button>
@@ -38,10 +52,8 @@
                <p class="ReleasData font-semibold leading-4 break-words whitespace-normal mt-1 cursor-pointer hover:text-red-950 w-full" >9/10</p>
             </div>
          </div>
-        
-         
       </div>
-  </div>
+   </div>
    
 
   <script type="module" src="./JS/config.js"></script>

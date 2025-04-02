@@ -12,3 +12,20 @@
 .trending{
    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.searchTitle{
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.describtion{
+   font-size: 15px;
+   line-height: 15px;
+   padding-left: 20px;
+   bottom: 0;
+}
+.date{
+   font-size: 14px;
+   padding-left: 20px;
+   opacity: 60%;
+}
+.searchOutput{
+   display: inline-block;
+}
