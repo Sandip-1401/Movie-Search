@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./src/input.css">
   <link href="./dist/output.css" rel="stylesheet">
+  
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 </head>
 <body class="overflow-x-hidden  bg-fixed min-h-screen flex flex-col">
+
+   <!-- <div id="splashScreen">
+      <img class="h-full w-full" src="./Images/Intro.webp" alt="Welcome" width="300">
+  </div> -->
 
    <div class="container mx-auto relative h-96 w-full max-w-[100%]   bg-no-repeat bg-cover bg-center flex items-center flex-col" style="background-image: url('./Images/the_netflix.jpg');">
       <nav class="h-16 w-full bg-transparent flex items-center justify-center">
@@ -22,23 +27,23 @@
    </div>  
 
 
-   <div class="h-16 w-full bg-red-500 flex items-center justify-center gap-2">
-      <input class="SearchInp h-8/12 w-1/3 bg-white rounded-4xl outline-0 pl-4.5" type="text" placeholder="Search movie tv-shows">
-      <button class="microphone h-8/12 w-fit px-4 hover:scale-105 rounded-4xl bg-red-700 text-white active:scale-95 font-bold"><i class="fa-solid fa-microphone"></i></button>
-      <button class="SearchBtn h-8/12 w-fit px-3.5 hover:scale-105 rounded-4xl bg-red-700 text-white active:scale-95 font-bold"><i class="fa-solid fa-magnifying-glass "></i></button>
+   <div class="h-16 w-full bg-red-500 flex items-center justify-center pl-2">
+      <input class="SearchInp h-8 sm:w-1/3  w-full bg-white rounded-4xl outline-0 pl-4.5 mr-1" type="text" placeholder="Search movie tv-shows">
+      <button class="microphone h-8/12 w-fit px-4 hover:scale-105 rounded-4xl bg-red-700 text-white active:scale-95 font-bold scale-80"><i class="fa-solid fa-microphone"></i></button>
+      <button class="SearchBtn h-8/12 w-fit px-3.5 hover:scale-105 rounded-4xl bg-red-700 text-white active:scale-95 font-bold scale-80"><i class="fa-solid fa-magnifying-glass "></i></button>
    </div>
 
-   <div class="searchOutput h-fit w-[80%] mx-auto mt-1.5 rounded-2xl backdrop-blur-3xl flex flex-col gap-6 p-5">
-      <div class="searchDetail m-1.5 flex shadow-2xl w-[80%] mx-auto rounded-md bg-red-100">
+   <div class="searchOutput searchOutputDisplayNone h-fit w-[80%] mx-auto mt-1.5 rounded-2xl backdrop-blur-3xl flex flex-col p-5 ">
+      <!-- <div class="searchDetail m-1.5 flex shadow-2xl w-[90%] mx-auto rounded-md bg-red-100  backdrop-blur-3xl mb-5">
          <img class="h-40 searchImg rounded-md shadow-3xl w-auto cursor-pointer hover:opacity-90 hover:scale-105 duration-200 rounded-tr-none rounded-br-none" src="./Images/poster.webp" alt="">
          <div class="searchText pt-2.5 pr-2 flex flex-col gap-3.5">
            <div class="searchTwo">
                <h4 class="searchTitle text-xl  pl-5">Avengers: Infinity war</h4>
-               <h6 class="searchDate font-bold">September 21th 2025</h6>
+               <h6 class="searchDate font-bold ">September 21th 2025</h6>
             </div>
             <p class="searchDescribtion mb-2.5 indent-4 ">One night and a wad of cash he suddenly has to come up with quick. So he and his friend Láďa have to set out on a wild Friday odyssey full of cocaine and rap.</p>
          </div>
-      </div>
+      </div> -->
    </div>
 
    <button class="my-5 w-fit p-1.5  text-2xl  bg-white font-semibold ml-10 trending">Trending</button>
@@ -46,14 +51,29 @@
    <div class="w-full mx-auto overflow-x-auto whitespace-nowrap scrollbar-hide   justify-center mb-20 bg-center bg-no-repeat bg-cover" style="background-image: url('./Images/good.jpg');">
       <div class="flex allImg gap-x-6 pl-12 pt-8" >
          <div class="h-72 w-fit outDiv">
-            <img class="h-56 imgs rounded-md w-auto cursor-pointer hover:opacity-90 hover:scale-105 duration-200" src="./Images/poster.webp" alt="">
+            <!-- <img class="h-56 imgs rounded-md w-auto cursor-pointer hover:opacity-90 hover:scale-105 duration-200" src="./Images/poster.webp" alt="">
             <div class="h-fit w-40 flex flex-wrap infoDiv mt-1.5">
                <p class="Title font-semibold leading-4 break-words whitespace-normal mt-1 cursor-pointer hover:text-red-950 w-full">Avengers: Infinity war</p>
                <p class="ReleasData font-semibold leading-4 break-words whitespace-normal mt-1 cursor-pointer hover:text-red-950 w-full" >9/10</p>
-            </div>
+            </div> -->
          </div>
       </div>
    </div>
+
+   <h4 class="font-bold text-2xl  w-[80%] mx-auto mb-5">Top Rated Movies</h4>
+
+   <div class="h-96 topMovies w-[80%] shadow-2xl mx-auto flex flex-wrap items-center justify-center gap-10 p-10 overflow-scroll whitespace-nowrap scrollbar-hide mb-96 rounded-3xl">
+      <!-- <div class="h-72 w-fit topOutDiv">
+         <img class="h-56 topImgs rounded-md w-auto cursor-pointer hover:opacity-90 hover:scale-105 duration-200" src="./Images/poster.webp" alt="">
+         <div class="h-fit topInfoDiv w-40 flex flex-wrap mt-1.5">
+            <p class="topTitle font-semibold leading-4 break-words whitespace-normal mt-1 cursor-pointer hover:text-red-950 w-full">Avengers: Infinity wars sddd sd</p>
+            <p class="topReleasData font-semibold leading-4 break-words whitespace-normal mt-1 cursor-pointer hover:text-red-950 w-full" >9/10</p>
+         </div>
+      </div>   -->
+      
+   </div>
+   
+   
    
 
   <script type="module" src="./JS/config.js"></script>
@@ -66,4 +86,6 @@
  -->
 <!-- https://api.themoviedb.org/3/trending/movie/week?api_key=YOUR_API_KEY -->
 <!-- https://api.themoviedb.org/3/search/movie?api_key=YOUR_API_KEY&query=Inception
+ -->
+<!-- https://api.themoviedb.org/3/movie/top_rated?api_key=YOUR_API_KEY
  -->

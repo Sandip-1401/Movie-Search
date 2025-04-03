@@ -3,11 +3,17 @@ import API_KEY from './config.js';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-
+// setTimeout(() => {
+//    let splash = document.getElementById("splashScreen");
+//    splash.style.opacity = "0"; // Fade effect
+//    setTimeout(() => {
+//        splash.style.display = "none"; // Remove after fade-out
+//    }, 500); // Wait for transition to complete
+// }, 100); // Show splash for 3 sec
 
 const getTrendingMovies = async () => {
    console.log("Fetching data......!!");
-   let URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
+   let URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
    let response = await fetch(URL);
    let data = await response.json();
    const movies = data.results;
@@ -19,19 +25,25 @@ const getTrendingMovies = async () => {
    movies.forEach((movie) => {
       
       let URLIMG = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
       let imgs = document.createElement("img");
       imgs.src = URLIMG;
       imgs.classList.add('h-56', 'imgs', 'rounded-md', 'w-auto', 'cursor-pointer', 'hover:opacity-90', 'hover:scale-105', 'duration-200');
+
       let outDiv = document.createElement("div");
       outDiv.classList.add('h-72', 'w-fit', 'outDiv');
+
       let infoDiv = document.createElement("div");
       infoDiv.classList.add('h-fit', 'w-40', 'flex', 'flex-wrap', 'infoDiv');
+
       let Title = document.createElement("p");
       Title.innerHTML = `${movie.title}`;
       Title.classList.add('Title', 'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
+
       let ReleasData = document.createElement("p");
       ReleasData.innerHTML = `${parseFloat(movie.vote_average.toFixed(1))}/10`;
       ReleasData.classList.add('Title', 'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
+
       infoDiv.append(Title);
       infoDiv.append(ReleasData);
       outDiv.appendChild(imgs);
@@ -55,20 +67,100 @@ const searchMovie = async () => {
    const movies = data.results;
    console.log(movies);
    
-   
+   const searchOutput = document.querySelector(".searchOutput");
+   searchOutput.classList.remove('searchOutputDisplayNone');
+   searchOutput.classList.add('searchOutputDisplay');
+   searchOutput.innerHTML = "";
 
-   data.forEach((movie) => {
-      let URLIMG = `https://image.tmdb.org/t/p/w500${movies.poster_path}`;
+   movies.forEach((movie) => {
+      let URLIMG = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
       let imgs = document.createElement("img");
       imgs.src = URLIMG;
+      const searchDetail = document.createElement("div");
+      searchDetail.classList.add('searchDetail', 'm-1.5', 'flex', 'shadow-2xl', 'w-[90%]', 'mx-auto', 'rounded-md', 'bg-red-100', 'backdrop-blur-3xl', 'mb-5');
+
+      imgs.classList.add('h-40', 'searchImg', 'rounded-md', 'shadow-3xl', 'w-auto', 'cursor-pointer','hover:opacity-90', 'hover:scale-105', 'duration-200', 'rounded-tr-none', 'rounded-br-none');
+
+      const searchText = document.createElement("div");
+      searchText.classList.add('searchText', 'pt-2.5', 'pr-2', 'flex', 'flex-col', 'gap-3.5');
+
+      const searchTwo = document.createElement("div");
+      searchTwo.classList.add('searchTwo');
+
+      const searchTitle = document.createElement("h4");
+      searchTitle.classList.add('searchTitle', 'text-xl', 'pl-5');
+      searchTitle.innerHTML = `${movie.title}`;
+
+      const searchDate = document.createElement("h6");
+      searchDate.classList.add('searchDate','font-bold');
+      searchDate.innerHTML = `${movie.release_date}`;
+
+      const searchDescribtion = document.createElement("p");
+      searchDescribtion.classList.add('searchDescribtion', 'mb-2.5', 'indent-4');
+      searchDescribtion.innerHTML = `${movie.overview.split('. ').slice(0, 3).join('. ') + "."}`;
+
+      searchTwo.appendChild(searchTitle);
+      searchTwo.appendChild(searchDate);
+
+      searchText.appendChild(searchTwo);
+      searchText.appendChild(searchDescribtion);
+
+      searchDetail.appendChild(imgs);
+      searchDetail.appendChild(searchText);
+
+      searchOutput.appendChild(searchDetail);
    });
 };
 
 SearchBtn.addEventListener("click", () => {
-   searchMovie();
+   const SearchInp = document.querySelector(".SearchInp");
+   if(SearchInp.value){
+      searchMovie();
+   }
 });
 
+const getTopRated = async () => {
+   let URLTOP = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`;
+   const response = await fetch(URLTOP);
+   const data = await response.json();
+   const movies = data.results;
+   console.log(movies);
 
+   const topMovies = document.querySelector(".topMovies");
+   
+   movies.forEach((movie) => {
+      let URLTOPIMG = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+      let imgs = document.createElement("img");
+      imgs.src = URLTOPIMG;
+      imgs.classList.add('h-56', 'topImgs', 'rounded-md', 'w-auto', 'cursor-pointer', 'hover:opacity-90', 'hover:scale-105', 'duration-200');
+
+      const topOutDiv = document.createElement("div");
+      topOutDiv.classList.add('h-72', 'w-fit', 'topOutDiv');
+
+      const topInfoDiv = document.createElement("div");
+      topInfoDiv.classList.add('h-fit', 'w-40', 'flex', 'flex-wrap', 'topInfoDiv', 'mt-1.5');
+
+      const topTitle = document.createElement("p");
+      topTitle.classList.add('topTitle', 'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
+      topTitle.innerHTML = `${movie.title}`;
+
+      const topReleasData = document.createElement("p");
+      topReleasData.classList.add('topReleasData', 'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
+      topReleasData.innerHTML = `${parseFloat(movie.vote_average.toFixed(1))}/10`;
+
+      topInfoDiv.appendChild(topTitle);
+      topInfoDiv.appendChild(topReleasData);
+
+      topOutDiv.appendChild(imgs);
+      topOutDiv.appendChild(topInfoDiv);
+
+      topMovies.appendChild(topOutDiv);
+   })
+}
+const getTopRatedFun = () => {
+   getTopRated();
+};
+// getTopRatedFun();
 
 // const getMovies = async () => {
 //    let URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
