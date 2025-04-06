@@ -3,16 +3,15 @@ import API_KEY from './config.js';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-// setTimeout(() => {
-//    let splash = document.getElementById("splashScreen");
-//    splash.style.opacity = "0"; // Fade effect
-//    setTimeout(() => {
-//        splash.style.display = "none"; // Remove after fade-out
-//    }, 500); // Wait for transition to complete
-// }, 100); // Show splash for 3 sec
+setTimeout(() => {
+   let splash = document.getElementById("splashScreen");
+   splash.style.opacity = "0"; // Fade effect
+   setTimeout(() => {
+       splash.style.display = "none"; // Remove after fade-out
+   }, 500); // Wait for transition to complete
+}, 1000); // Show splash for 3 sec
 
 const getTrendingMovies = async () => {
-   console.log("Fetching data......!!");
    let URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
    let response = await fetch(URL);
    let data = await response.json();
@@ -55,7 +54,7 @@ const getTrendingMovies = async () => {
 const getTrend = () => {
    getTrendingMovies();
 }
-// getTrend();
+getTrend();
 
 const SearchBtn = document.querySelector(".SearchBtn");
 const searchMovie = async () => {
@@ -160,7 +159,7 @@ const getTopRated = async () => {
 const getTopRatedFun = () => {
    getTopRated();
 };
-// getTopRatedFun();
+getTopRatedFun();
 
 // const getMovies = async () => {
 //    let URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
