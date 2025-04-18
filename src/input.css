@@ -55,3 +55,20 @@
    font-size: 14px;
    opacity: 60%;
 }
+
+.poptitle, .poprating, .popdate{
+   font-size: 20px;
+}
+.poprating, .popdate{
+   font-size: 17px;
+}
+
+.height1{
+   height: 500px;
+}
+.height2{
+   height: 700px;
+}
+.height3{
+   height: 900px;
+}

@@ -3,13 +3,13 @@ import API_KEY from './config.js';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-setTimeout(() => {
-   let splash = document.getElementById("splashScreen");
-   splash.style.opacity = "0"; // Fade effect
-   setTimeout(() => {
-       splash.style.display = "none"; // Remove after fade-out
-   }, 500); // Wait for transition to complete
-}, 1000); // Show splash for 3 sec
+// setTimeout(() => {
+//    let splash = document.getElementById("splashScreen");
+//    splash.style.opacity = "0"; // Fade effect
+//    setTimeout(() => {
+//        splash.style.display = "none"; // Remove after fade-out
+//    }, 500); // Wait for transition to complete
+// }, 1000); // Show splash for 3 sec
 
 const getTrendingMovies = async () => {
    let URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
@@ -36,7 +36,7 @@ const getTrendingMovies = async () => {
       infoDiv.classList.add('h-fit', 'w-40', 'flex', 'flex-wrap', 'infoDiv');
 
       let Title = document.createElement("p");
-      Title.innerHTML = `${movie.title}`;
+      Title.innerHTML = `${movie.original_title}`;
       Title.classList.add('Title', 'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
 
       let ReleasData = document.createElement("p");
@@ -54,7 +54,7 @@ const getTrendingMovies = async () => {
 const getTrend = () => {
    getTrendingMovies();
 }
-getTrend();
+// getTrend();
 
 const SearchBtn = document.querySelector(".SearchBtn");
 const searchMovie = async () => {
@@ -88,7 +88,7 @@ const searchMovie = async () => {
 
       const searchTitle = document.createElement("h4");
       searchTitle.classList.add('searchTitle', 'text-xl', 'pl-5');
-      searchTitle.innerHTML = `${movie.title}`;
+      searchTitle.innerHTML = `${movie.original_title}`;
 
       const searchDate = document.createElement("h6");
       searchDate.classList.add('searchDate','font-bold');
@@ -141,7 +141,7 @@ const getTopRated = async () => {
 
       const topTitle = document.createElement("p");
       topTitle.classList.add('topTitle', 'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
-      topTitle.innerHTML = `${movie.title}`;
+      topTitle.innerHTML = `${movie.original_title}`;
 
       const topReleasData = document.createElement("p");
       topReleasData.classList.add('topReleasData', 'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
@@ -159,29 +159,71 @@ const getTopRated = async () => {
 const getTopRatedFun = () => {
    getTopRated();
 };
-getTopRatedFun();
+// getTopRatedFun();
 
-// const getMovies = async () => {
-//    let URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
-//    let response = await fetch(URL);
-//    let data = await response.json();
-//    const movies = data.results;
-//    console.log(movies);
+const getMovies = async () => {
+   let page = 1;
+   let URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
+   let response = await fetch(URL);
+   let data = await response.json();
+   const movies = data.results.slice(0, 6);
+   console.log(movies);
 
-//    movies.forEach((movie) => {
+   
+   const popmovies = document.querySelector(".popmovies");
+
+
+   movies.forEach((movie) => {
       
-//       let URLIMG = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-//       let imgs = document.createElement("img");
-//       imgs.classList.add('h-72', 'imgs', 'rounded-3xl', 'w-auto');
-//       imgs.src = URLIMG;
-//       allImg.appendChild(imgs);
-//    });
+      
 
-// }
+      const popsingle = document.createElement("div");
+      popsingle.classList.add('popsingle');
 
-// const get = () => {
-//    getMovies();
-// }
+      const popbox = document.querySelector(".popbox");
+      popbox.classList.add('popbox');
+
+      let POPURLIMG = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
+      let popimg = document.createElement("img");
+      popimg.src = `${POPURLIMG}`;
+      popimg.classList.add('popimg', 'h-52', 'w-fit', 'bg-center', 'rounded-xl', 'mb-2', 'cursor-pointer', 'hover:opacity-90', 'hover:scale-105', 'duration-200');
+
+      const popdes = document.createElement("div");
+      popdes.classList.add('popdes', 'flex', 'flex-col', 'gap-1');
+
+     const poptitle = document.createElement("h5");
+     poptitle.classList.add('poptitle' ,'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
+     poptitle.innerHTML = `${movie.original_title}`;
+
+     const poprating = document.createElement("h5");
+     poprating.classList.add('poprating', 'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full', 'opacity-70');
+     poprating.innerHTML = `${parseFloat(movie.vote_average.toFixed(1))}/10`;
+
+     const popdate = document.createElement("h5");
+     popdate.classList.add('popdate' ,'font-semibold', 'leading-4', 'break-words', 'whitespace-normal', 'mt-1', 'cursor-pointer', 'hover:text-red-950', 'w-full');
+     popdate.innerHTML = `${movie.release_date}`;
+
+     popdes.appendChild(poptitle);
+     popdes.appendChild(poprating);
+     popdes.appendChild(popdate);
+
+     popsingle.appendChild(popimg);
+     popsingle.appendChild(popdes);
+
+     popbox.appendChild(popsingle);
+
+   });
+
+   const showmore = document.querySelector(".showmore");
+   showmore.addEventListener("click", () => {
+      popmovies.classList.remove('h-96');
+      popmovies.classList.add('h-fit');
+      popbox.classList.add('h-fit');
+   });
+
+}
+
+// getMovies();
 
 
 function updateConnectionStatus(){
