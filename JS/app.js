@@ -22,6 +22,10 @@ const getTrendingMovies = async () => {
    const allImg = document.querySelector(".allImg");
 
    movies.forEach((movie) => {
+
+      const a = document.createElement("a");
+      a.href = `https://www.google.com/search?sca_esv=dcef92e01162e678&sxsrf=AHTn8zopuydS86cPYNhP7NhEtyHWy4BeMQ:1745178774921&q=${movie.original_title}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBtmuEdhfywyzhendkLDnhcrJ5Ab4RKLuubEKce5_0WFIkTtBv0jWoMVlgF0K8zBpkS5MPN8if8EiVqRXe3oF9JtF1zDaoALraPXIohOsUTyOpbp7Hg9DeJjHb1GyVGr4UopvkcWpSplweXOPetMVMnx8-azGtI8U2AePUDxmoN7UZpqHdw&sa=X&ved=2ahUKEwimoMvHseeMAxUz4DgGHat9IVEQtKgLegQIFxAB&biw=1254&bih=616&dpr=1.09`;
+
       
       let URLIMG = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
@@ -45,7 +49,8 @@ const getTrendingMovies = async () => {
 
       infoDiv.append(Title);
       infoDiv.append(ReleasData);
-      outDiv.appendChild(imgs);
+      a.appendChild(imgs);
+      outDiv.appendChild(a);
       outDiv.appendChild(infoDiv);
       allImg.appendChild(outDiv);
    });
@@ -54,7 +59,7 @@ const getTrendingMovies = async () => {
 const getTrend = () => {
    getTrendingMovies();
 }
-// getTrend();
+getTrend();
 
 const SearchBtn = document.querySelector(".SearchBtn");
 const searchMovie = async () => {
@@ -72,13 +77,20 @@ const searchMovie = async () => {
    searchOutput.innerHTML = "";
 
    movies.forEach((movie) => {
+
+
+      const a = document.createElement("a");
+      a.href = `https://www.google.com/search?sca_esv=dcef92e01162e678&sxsrf=AHTn8zopuydS86cPYNhP7NhEtyHWy4BeMQ:1745178774921&q=${movie.original_title}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBtmuEdhfywyzhendkLDnhcrJ5Ab4RKLuubEKce5_0WFIkTtBv0jWoMVlgF0K8zBpkS5MPN8if8EiVqRXe3oF9JtF1zDaoALraPXIohOsUTyOpbp7Hg9DeJjHb1GyVGr4UopvkcWpSplweXOPetMVMnx8-azGtI8U2AePUDxmoN7UZpqHdw&sa=X&ved=2ahUKEwimoMvHseeMAxUz4DgGHat9IVEQtKgLegQIFxAB&biw=1254&bih=616&dpr=1.09`;
+
+
+
       let URLIMG = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
       let imgs = document.createElement("img");
       imgs.src = URLIMG;
       const searchDetail = document.createElement("div");
       searchDetail.classList.add('searchDetail', 'm-1.5', 'flex', 'shadow-2xl', 'w-[90%]', 'mx-auto', 'rounded-md', 'bg-red-100', 'backdrop-blur-3xl', 'mb-5');
 
-      imgs.classList.add('h-40', 'searchImg', 'rounded-md', 'shadow-3xl', 'w-auto', 'cursor-pointer','hover:opacity-90', 'hover:scale-105', 'duration-200', 'rounded-tr-none', 'rounded-br-none');
+      imgs.classList.add('h-40', 'searchImg', 'rounded-md', 'shadow-3xl', 'w-30', 'cursor-pointer','hover:opacity-90', 'hover:scale-105', 'duration-200', 'rounded-tr-none', 'rounded-br-none');
 
       const searchText = document.createElement("div");
       searchText.classList.add('searchText', 'pt-2.5', 'pr-2', 'flex', 'flex-col', 'gap-3.5');
@@ -87,7 +99,7 @@ const searchMovie = async () => {
       searchTwo.classList.add('searchTwo');
 
       const searchTitle = document.createElement("h4");
-      searchTitle.classList.add('searchTitle', 'text-xl', 'pl-5');
+      searchTitle.classList.add('searchTitle', 'text-xl','cursor-pointer', 'pl-5');
       searchTitle.innerHTML = `${movie.original_title}`;
 
       const searchDate = document.createElement("h6");
@@ -103,11 +115,12 @@ const searchMovie = async () => {
 
       searchText.appendChild(searchTwo);
       searchText.appendChild(searchDescribtion);
-
+     
       searchDetail.appendChild(imgs);
       searchDetail.appendChild(searchText);
 
       searchOutput.appendChild(searchDetail);
+       // a.appendChild(imgs);
    });
 };
 
@@ -115,6 +128,7 @@ SearchBtn.addEventListener("click", () => {
    const SearchInp = document.querySelector(".SearchInp");
    if(SearchInp.value){
       searchMovie();
+      SearchInp.value = "";
    }
 });
 
@@ -128,6 +142,12 @@ const getTopRated = async () => {
    const topMovies = document.querySelector(".topMovies");
    
    movies.forEach((movie) => {
+
+
+      const a = document.createElement("a");
+      a.href = `https://www.google.com/search?sca_esv=dcef92e01162e678&sxsrf=AHTn8zopuydS86cPYNhP7NhEtyHWy4BeMQ:1745178774921&q=${movie.original_title}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBtmuEdhfywyzhendkLDnhcrJ5Ab4RKLuubEKce5_0WFIkTtBv0jWoMVlgF0K8zBpkS5MPN8if8EiVqRXe3oF9JtF1zDaoALraPXIohOsUTyOpbp7Hg9DeJjHb1GyVGr4UopvkcWpSplweXOPetMVMnx8-azGtI8U2AePUDxmoN7UZpqHdw&sa=X&ved=2ahUKEwimoMvHseeMAxUz4DgGHat9IVEQtKgLegQIFxAB&biw=1254&bih=616&dpr=1.09`;
+
+
       let URLTOPIMG = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
       let imgs = document.createElement("img");
       imgs.src = URLTOPIMG;
@@ -149,8 +169,8 @@ const getTopRated = async () => {
 
       topInfoDiv.appendChild(topTitle);
       topInfoDiv.appendChild(topReleasData);
-
-      topOutDiv.appendChild(imgs);
+      a.appendChild(imgs);
+      topOutDiv.appendChild(a);
       topOutDiv.appendChild(topInfoDiv);
 
       topMovies.appendChild(topOutDiv);
@@ -159,19 +179,22 @@ const getTopRated = async () => {
 const getTopRatedFun = () => {
    getTopRated();
 };
-// getTopRatedFun();
-
+getTopRatedFun();
+let number = 3; 
+let page = 1;
+   
 const getMovies = async () => {
-   let page = 1;
+   
    let URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
    let response = await fetch(URL);
    let data = await response.json();
-   const movies = data.results.slice(0, 6);
+   // console.log(number);
+   const movies = data.results.slice(0, number);
    console.log(movies);
 
    
    const popmovies = document.querySelector(".popmovies");
-
+   const popbox = document.querySelector(".popbox");
 
    movies.forEach((movie) => {
       
@@ -180,8 +203,11 @@ const getMovies = async () => {
       const popsingle = document.createElement("div");
       popsingle.classList.add('popsingle');
 
-      const popbox = document.querySelector(".popbox");
+     
       popbox.classList.add('popbox');
+
+      const a = document.createElement("a");
+      a.href = `https://www.google.com/search?sca_esv=dcef92e01162e678&sxsrf=AHTn8zopuydS86cPYNhP7NhEtyHWy4BeMQ:1745178774921&q=${movie.original_title}&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBtmuEdhfywyzhendkLDnhcrJ5Ab4RKLuubEKce5_0WFIkTtBv0jWoMVlgF0K8zBpkS5MPN8if8EiVqRXe3oF9JtF1zDaoALraPXIohOsUTyOpbp7Hg9DeJjHb1GyVGr4UopvkcWpSplweXOPetMVMnx8-azGtI8U2AePUDxmoN7UZpqHdw&sa=X&ved=2ahUKEwimoMvHseeMAxUz4DgGHat9IVEQtKgLegQIFxAB&biw=1254&bih=616&dpr=1.09`;
 
       let POPURLIMG = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
       let popimg = document.createElement("img");
@@ -207,7 +233,9 @@ const getMovies = async () => {
      popdes.appendChild(poprating);
      popdes.appendChild(popdate);
 
-     popsingle.appendChild(popimg);
+     a.appendChild(popimg);
+
+     popsingle.appendChild(a);
      popsingle.appendChild(popdes);
 
      popbox.appendChild(popsingle);
@@ -219,11 +247,15 @@ const getMovies = async () => {
       popmovies.classList.remove('h-96');
       popmovies.classList.add('h-fit');
       popbox.classList.add('h-fit');
+     
+      page++;
+      getMovies();
+      // console.log(number);
    });
 
 }
 
-// getMovies();
+getMovies();
 
 
 function updateConnectionStatus(){
